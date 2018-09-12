@@ -9,9 +9,9 @@ namespace PartyInvites.Controllers
 {
     public class HomeController : Controller
     {
-        private DataContext context;
+        private DatoContexto contexto;
 
-        public HomeController(DataContext ctx) => context = ctx;
+        public HomeController(DatoContexto ctx) => contexto = ctx;
 
         public IActionResult Index()
         {
@@ -21,14 +21,14 @@ namespace PartyInvites.Controllers
         public IActionResult Respond() => View();
 
         [HttpPost]
-        public IActionResult Respond(GuestResponse response) {
-            context.Responses.Add(response);
-            context.SaveChanges();
-            return RedirectToAction(nameof(Thanks), new GuestResponse() { Name = response.Name, WillAttend = response.WillAttend });
+        public IActionResult Respond(InvitadoRespuesta respuesta) {
+            contexto.Respuestas.Add(respuesta);
+            contexto.SaveChanges();
+            return RedirectToAction(nameof(Thanks), new InvitadoRespuesta() { Name = respuesta.Name, WillAttend = respuesta.WillAttend });
         }
 
-        public IActionResult Thanks(GuestResponse response) => View(response);
+        public IActionResult Thanks(InvitadoRespuesta respuesta) => View(respuesta);
 
-        public IActionResult ListResponses() => View(context.Responses.OrderByDescending(r => r.WillAttend));
+        public IActionResult ListResponses() => View(contexto.Respuestas.OrderByDescending(r => r.WillAttend));
     }
 }

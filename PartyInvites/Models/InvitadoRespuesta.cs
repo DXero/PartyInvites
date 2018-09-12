@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PartyInvites.Models
 {
-    public class GuestResponse
+    public class InvitadoRespuesta
     {
         public long Id { get; set; }
         public string Name { get; set; }
