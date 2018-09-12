@@ -22,6 +22,9 @@ namespace PartyInvites
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            string conString = Configuration["ConnectionStrings:DefaultConnection"];
+            services.AddDbContext<DatoContexto>(options =>
+            options.UseSqlServer(conString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -31,10 +34,10 @@ namespace PartyInvites
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
-            if (env.IsDevelopment())
+            /*if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            }
+            }*/
 
             /*app.Run(async (context) =>
             {

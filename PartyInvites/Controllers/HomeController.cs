@@ -24,7 +24,8 @@ namespace PartyInvites.Controllers
         public IActionResult Respond(InvitadoRespuesta respuesta) {
             contexto.Respuestas.Add(respuesta);
             contexto.SaveChanges();
-            return RedirectToAction(nameof(Thanks), new InvitadoRespuesta() { Name = respuesta.Name, WillAttend = respuesta.WillAttend });
+            //return RedirectToAction(nameof(Thanks), new InvitadoRespuesta() { Name = respuesta.Name, WillAttend = respuesta.WillAttend });
+            return RedirectToAction(nameof(Thanks), respuesta);
         }
 
         public IActionResult Thanks(InvitadoRespuesta respuesta) => View(respuesta);
