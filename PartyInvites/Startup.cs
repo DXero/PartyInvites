@@ -23,8 +23,10 @@ namespace PartyInvites
         {
             services.AddMvc();
             string conString = Configuration["ConnectionStrings:DefaultConnection"];
-            services.AddDbContext<DatoContexto>(options =>
-            options.UseSqlServer(conString));
+            services.AddDbContext<DatoContexto>(options => {
+                options.EnableSensitiveDataLogging(true);
+                options.UseSqlServer(conString);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

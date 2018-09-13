@@ -30,6 +30,7 @@ namespace PartyInvites.Controllers
 
         public IActionResult Thanks(InvitadoRespuesta respuesta) => View(respuesta);
 
-        public IActionResult ListResponses() => View(contexto.Respuestas.OrderByDescending(r => r.WillAttend));
+        //public IActionResult ListResponses() => View(contexto.Respuestas.Where(r => r.WillAttend==true).OrderBy(r => r.Email));
+        public IActionResult ListResponses(String buscarTerm = "7777-7777") => View(contexto.Respuestas.Where(r => r.Phone == buscarTerm).OrderBy(r => r.Email));
     }
 }
